@@ -23,7 +23,7 @@ answer, including your reasoning, to this markdown file.
   - $E$ is number of edges in the graph
   - $V$ is number of vertices in the graph
   - $\alpha$ is the Ackermann function
-  -  This grows at an extremely slow and considerably constant rate
+    - This grows at an extremely slow and considerably constant rate
       
 **Resoning Behind This** 
 - **Initialization:** 
