@@ -3,47 +3,47 @@
 // Detecting Cycles 
 
 function hasCycle(graph) {
-    function find(parent, i) {
-        if (parent[i] !== i) {
-            parent[i] = find(parent, parent[i]);
+    const n = graph.length;
+
+    const parent = Array(n).fill(null).map((_, idx) => idx);
+    const rank = Array(n).fill(0);
+
+    function find(node) {
+        if (parent[node] !== node) {
+            parent[node] = find(parent[node]);
         }
-        return parent[i];
+        return parent[node];
     }
 
-    function union(parent, rank, x, y) {
-        let rootX = find(parent, x);
-        let rootY = find(parent, y);
+    function union(node1, node2) {
+        const root1 = find(node1);
+        const root2 = find(node2);
 
-        if (rootX !== rootY) {
-            if (rank[rootX] > rank[rootY]) {
-                parent[rootY] = rootX;
-            } else if (rank[rootX] < rank[rootY]) {
-                parent[rootX] = rootY;
-            } else {
-                parent[rootY] = rootX;
-                rank[rootX]++;
-            }
-        } else {
+        if (root1 == root2) {
             return true;
+        }
+
+        if (rank[root1] > rank[root2]) {
+            parent[root2] = root1;
+        }
+        else if (ranl[root1] < rank[root2]) {
+            parent[root1] = root2;
+        }
+        else {
+            parent[root2] = root1;
+            rank[root1]++;
         }
         return false;
     }
 
-    let parent = {};
-    let rank = {};
-
-    for (let node in graph) {
-        parent[node] = node;
-        rank[node] = 0;
-    }
-
-    for (let node in graph) {
-        for (let neighbor of graph[node]) {
-            if (union(parent, rank, node, neighbor)) {
-                return true;
+    for (let v = 0; v < n; v++) {
+        for (const neighbor of graph[v]) {
+            if (v < neighbor) {
+                if (union(v, neighbor)) {
+                    return true;
+                }
             }
         }
     }
-
-    return false;
+    return false; 
 }
