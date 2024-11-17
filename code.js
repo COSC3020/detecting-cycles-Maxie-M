@@ -26,7 +26,7 @@ function hasCycle(graph) {
         if (rank[root1] > rank[root2]) {
             parent[root2] = root1;
         }
-        else if (ranl[root1] < rank[root2]) {
+        else if (rank[root1] < rank[root2]) {
             parent[root1] = root2;
         }
         else {
