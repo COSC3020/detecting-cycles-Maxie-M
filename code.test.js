@@ -2,23 +2,38 @@
 // Maxie Machado 
 // Detecting Cycles 
 
-const jsverify = require("jsverify");
-const { hasCycle } = require("./code");
+const fs = require('fs');
+const test = require('unit.js');
 
-jsverify.property("Detect cycle in a graph", () => {
-    const graphWithCycle = {
-        1: [2],
-        2: [3],
-        3: [1],
-    };
-    return hasCycle(graphWithCycle) === true;
-});
+eval(fs.readFileSync('code.js') + '');
 
-jsverify.property("Detect no cycle in a graph", () => {
-    const graphWithoutCycle = {
-        1: [2],
-        2: [3],
-        3: [],
-    };
-    return hasCycle(graphWithoutCycle) === false;
+const tests = [
+    //grpah with cycle 
+    {
+        graph: [[1, 2], [0, 2], [0, 1, 3], [2]],
+        expected: true,
+    },
+
+    //graph without cycle 
+    {
+        graph: [[1], [0, 2], [1]],
+        expected: false,
+    },
+
+    //disconnected w/ cycle 
+    {
+        graph: [[1], [0, 2], [1], [4, 5], [3, 5], [3, 4]],
+        expected: true,
+    },
+
+    //disconnected w/o cycle 
+    {
+        graph: [[1], [0], [3], [2]],
+        expected: false,
+    },
+];
+
+test.forEach(({ graph, epected }, idx) => {
+    test.value(hasCycle(graph)).is(expected);
+    console.log('Test case ${idx + 1}: Passed');
 });
