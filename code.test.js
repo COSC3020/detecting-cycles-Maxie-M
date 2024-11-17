@@ -33,7 +33,7 @@ const tests = [
     },
 ];
 
-tests.forEach(({ graph, epected }, idx) => {
+tests.forEach(({ graph, expected }, idx) => {
     test.value(hasCycle(graph)).is(expected);
     console.log('Test case ${idx + 1}: Passed');
 });
