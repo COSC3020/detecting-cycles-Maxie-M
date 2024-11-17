@@ -26,8 +26,8 @@ answer, including your reasoning, to this markdown file.
     - This grows at an extremely slow and considerably constant rate
       
 **Resoning Behind This** 
-- **Initialization:** 
- - Initializing the **parent** and **rank** array will take $\Theta(V)$
+- **Initialization:**
+  - Initializing the **parent** and **rank** array will take $\Theta(V)$
 - **Union-Find Operation:**
   - **find** funcition will use path compression
   - **union** function will use rank optimization
